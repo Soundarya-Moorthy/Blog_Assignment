@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blogapp/styles.css' %}">
+</head>
+<body>
+    <div class="blog-header">
+        <h1>Blog</h1>
+    </div>
+    <div class="blog-container">
+    {% for post in posts %}
+    <div class="blog-post">
+        <h2>{{ post.title }}</h2>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 100%; height: auto;">
+        {% endif %} 
+        <p class="content-snippet">{{ post.content }}</p>
+        <a href="{% url 'detail' post.id %}">Read More</a>
+        <hr>
+    </div>
+    {% endfor %}
+    </div>
+</body>
+</html>
